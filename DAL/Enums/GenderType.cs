@@ -8,8 +8,8 @@ namespace EMS_DAL.Enums
 {
     public enum GenderType
     {
-        Male,
-        Female,
-        Unknown
+        Unknown=0,
+        Male=1,
+        Female=2
     }
 }

@@ -8,7 +8,7 @@ namespace EMS_DAL.Enums
 {
     public enum DepartmentType
     {
-        Strategic,
-        Administrative
+        Strategic=0,
+        Administrative=1
     }
 }

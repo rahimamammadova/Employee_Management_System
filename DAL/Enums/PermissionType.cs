@@ -8,10 +8,10 @@ namespace EMS_DAL.Enums
 {
     public enum PermissionType
     {
-        Read,
-        Write,
-        Delete,
-        Modify,
-        Execute
+        Read=0,
+        Write=1,
+        Delete=2,
+        Modify=3,
+        Execute=4
     }
 }

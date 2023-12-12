@@ -9,13 +9,13 @@ namespace EMS_DAL.Enums
 {
     public enum SystemType
     {
-        Simulator,
-        Monitoring,
-        Security,
-        Business,
-        Management,
-        HR,
-        Financial
+        Simulator=0,
+        Monitoring=1,
+        Security=2,
+        Business=3,
+        Management=4,
+        HR=5,
+        Financial=6
 
     }
 }
