@@ -9,8 +9,18 @@ namespace EMS_WebUI.Areas.Admin.Controllers
     public class AdminController : BaseController
     {
         public AdminController(UserManager<AppUser> userManager, RoleManager<AppRole> roleManager)
-            : base(userManager, roleManager)
+            : base(userManager, null, roleManager)
         {
         }
+        public IActionResult Index()
+        {
+            return View(_userManager.Users.ToList()); 
+        }
+        public IActionResult RoleCreate()
+        {
+            return View(); //add view
+        }
+        [HttpPost]
+        public IActionResult RoleCreate()
     }
 }
