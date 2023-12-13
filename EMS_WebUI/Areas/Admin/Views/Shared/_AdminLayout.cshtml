@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - EMS_WebUI</title>
+     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/dashboard/">
+     
+    <link rel="stylesheet" href="~/template/assets/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/template/style.css" />
+    <link rel="stylesheet" href="~/template/dashboard.css" />
+</head>
+<body>
+  
+        <partial name="_AdminHeader"/>
+  <div class="container-fluid">
+      <div class="row">
+             <partial name="_AdminSidebar"/>
+              <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                   <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                           @RenderBody()
+                           
+                  </div>
+            <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
+                </main>
+      </div>
+      
+    </div>
+
+   
+   
+  
+   
+
+     <script src="~/template/assets/dist/js/bootstrap.bundle.min.js"></script>
+     <script src="~/js/site.js" asp-append-version="true"></script>
+     <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script>
+     <script src="~/template/dashboard.js"></script>
+     @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
