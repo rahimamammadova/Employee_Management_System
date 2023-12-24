@@ -10,6 +10,7 @@ namespace EMS_BLL.Services.Interfaces
 {
     public interface IEmployeeService : IGenericService<EmployeeDto,Employee>
     {
+        //public Task<List<EmployeeDto>> GetEmployeeDtosAsync();
         public Task<List<DepartmentDto>> GetDepartmentsAsync();
         public Task<List<EmployeeDto>> GetEmployeeByDepartmentIdAsync(Guid id);
         public Task<EmployeeDto> GetEmployeeDetailByIdAsync(Guid id);

@@ -20,6 +20,5 @@ namespace EMS_WebUI.Areas.Admin.Controllers
         {
             return View(); //add view
         }
-        
     }
 }

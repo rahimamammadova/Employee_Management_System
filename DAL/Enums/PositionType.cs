@@ -8,11 +8,11 @@ namespace EMS_DAL.Enums
 {
     public enum PositionType
     {
-        Partner=5,
-        Director=4,
-        Manager=3,
-        Senior=2,
-        Junior=1,
-        Intern=0
+        Partner=6,
+        Director=5,
+        Manager=4,
+        Senior=3,
+        Junior=2,
+        Intern=1
     }
 }

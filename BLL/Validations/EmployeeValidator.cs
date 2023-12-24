@@ -16,7 +16,7 @@ namespace EMS_BLL.Validations
                     .NotEmpty().WithMessage("Firstname can't be empty. Please enter firstname.")
                     .MinimumLength(2).WithMessage("Name can't contain less than 2 characters.")
                     .MaximumLength(256).WithMessage("Name can't contain more than 256 characters.");
-            RuleFor(l => l.LastName).NotNull().WithMessage("Lastname can't be null. Please enter lastname.")
+            RuleFor(l => l.Lastname).NotNull().WithMessage("Lastname can't be null. Please enter lastname.")
                     .NotEmpty().WithMessage("Lastname can't be empty. Please enter lastname.")
                     .MinimumLength(2).WithMessage("Surname can't contain less than 2 characters.")
                     .MaximumLength(256).WithMessage("Surname can't contain more than 256 characters.");

@@ -16,12 +16,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BLL\EMS_BLL.csproj" />
-    <ProjectReference Include="..\DAL\EMS_DAL.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Areas\Admin\Views\SystemApp\" />
   </ItemGroup>
 
 </Project>

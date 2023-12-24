@@ -18,7 +18,7 @@ namespace EMS_DAL.Models
         public Decimal Salary { get; set; }
         public PositionType PositionType { get; set; }
 
-        public AppUser User { get; set; }
+        public string? UserId { get; set; }
 
         public Department Department { get; set; }
         public Guid DepartmentId { get; set; }

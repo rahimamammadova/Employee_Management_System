@@ -31,6 +31,15 @@ namespace EMS_BLL.Services
             _documentReposiroty = documentRepository;
         }
 
+        //public async Task<List<EmployeeDto>> GetEmployeeDtosAsync()
+        //{
+        //    var employees = await _employeeRepository.GetListAsync();
+        //    var employeDtos = _mapper.Map<List<EmployeeDto>>(employees);
+        //    var departments = await _departmentRepository.GetListAsync();
+        //    var departamentDtos = _mapper.Map<List<DepartmentDto>>(departments);
+        //    return departamentDtos;
+        //}
+
         public async Task<List<DepartmentDto>> GetDepartmentsAsync()
         {
             var departments = await _departmentRepository.GetListAsync();

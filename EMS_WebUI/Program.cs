@@ -1,4 +1,6 @@
 using EMS_BLL.Mapping;
+using EMS_BLL.Services.Interfaces;
+using EMS_BLL.Services;
 using EMS_BLL.Validations;
 using EMS_DAL.Data;
 using EMS_DAL.Models;
@@ -36,7 +38,8 @@ builder.Services.AddIdentity<AppUser, AppRole>(opts =>
 .AddDefaultTokenProviders();
 
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
-builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+//builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+builder.Services.AddScoped(typeof(IGenericService<,>), typeof(GenericService<,>));
 
 builder.Services.AddAutoMapper(typeof(CustomMapping));
 
