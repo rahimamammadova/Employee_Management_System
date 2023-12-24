@@ -37,7 +37,6 @@
                         <label asp-for="DepTypeId" class="control-label"></label>
 
                         <select asp-for="DepTypeId"
-                            ReadOnly="true"
                                 class="form-control"
                                 asp-items="@(new SelectList(Model.DepTypeEnumValues, nameof(EnumValueDto.Value), nameof(EnumValueDto.Name)))">
                             <option>Please select one</option>
