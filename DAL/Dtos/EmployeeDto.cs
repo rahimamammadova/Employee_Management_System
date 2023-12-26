@@ -18,8 +18,8 @@ namespace EMS_DAL.Dtos
         public EmployeeDto()
         {
             this.GenderTypeEnumValues = EnumHelper<GenderType>.GetEnumValues();
-            this.PositionTypeEnumValues=EnumHelper<PositionType>.GetEnumValues();
-    }
+            this.PositionTypeEnumValues = EnumHelper<PositionType>.GetEnumValues();
+        }
 
         [Display(Name = "Name")]
         public string Firstname { get; set; }
@@ -46,7 +46,7 @@ namespace EMS_DAL.Dtos
         public string? UserId { get; set; }
         public Guid DepartmentId { get; set; }
         public DepartmentDto DepartmentDto { get; set; }
- 
+
 
         public string ProfilePicture { get; set; }
     }

@@ -1,0 +1,61 @@
+﻿@model PermissionDto
+@{
+    ViewData["Title"] = "Update";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="layout-px-spacing">
+
+    <div class="row layout-top-spacing">
+
+        <form asp-action="Update" enctype="multipart/form-data" class="mt-3 my-5">
+
+            <div class="row">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="col-4">
+                    <div class="form-group">
+                        <label asp-for="Title" class="control-label"></label>
+                        <input asp-for="Title" class="form-control" />
+                        <input asp-for="Id" hidden />
+                        <span asp-validation-for="Title" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="form-group">
+                        <label asp-for="Description" class="control-label"></label>
+                        <input asp-for="Description" class="form-control" />
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="col-4">
+                    <div class="form-group">
+                        <label asp-for="PermissionTypeId" class="control-label"></label>
+
+                        <select asp-for="PermissionTypeId"
+                                class="form-control"
+                                asp-items="@(new SelectList(Model.PermissionTypeEnumValues, nameof(EnumValueDto.Value), nameof(EnumValueDto.Name)))">
+                            <option>Please select one</option>
+                        </select>
+
+                        <span asp-validation-for="PermissionTypeId" class="text-danger"></span>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row mt-3">
+
+                <div class="col-md-4 offset-md-8 text-end">
+                    @Html.ActionLink("Return to the list", "Index", "Permission", null, new { @class = "btn btn-primary btn-lg btn-block" })
+                    <input id="frmProductCat" type="submit" value="Update" class="btn btn-primary btn-lg btn-block" tabindex="16" />
+
+                </div>
+
+            </div>
+
+        </form>
+
+    </div>
+</div>
+

@@ -96,7 +96,7 @@ namespace EMS_WebUI.Areas.Admin.Controllers
 
         }
         [HttpPost]
-        public IActionResult Delete(DepartmentDto itemDto)
+        public IActionResult Delete(EmployeeDto itemDto)
         {
             _service.Delete(itemDto.Id);
             TempData["success"] = "Employee has been successfully deleted.";

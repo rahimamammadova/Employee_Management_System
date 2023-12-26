@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -9,13 +10,20 @@ namespace EMS_DAL.Enums
 {
     public enum SystemType
     {
-        Simulator=0,
-        Monitoring=1,
-        Security=2,
-        Business=3,
-        Management=4,
-        HR=5,
-        Financial=6
+        [Description("Simulator application")]
+        Simulator=1,
+        [Description("Monitoring application")]
+        Monitoring =2,
+        [Description("Security application")]
+        Security =3,
+        [Description("Management application")]
+        Management =4,
+        [Description("Enterprise resource planning application")]
+        ERP =5,
+        [Description("Supply chain management application")]
+        SCM =6,
+        [Description("Customer relationship management application")]
+        CRM =7
 
     }
 }

@@ -9,9 +9,11 @@ namespace EMS_DAL.Dtos
 {
     public class SystemAppRoleDto : BaseDto
     {
+
         public string Title { get; set; }
         public string Description { get; set; }
-
+        public Guid PermissionId { get; set; }
+        public PermissionDto PermissionDto { get; set; }
         public Guid SystemAppId { get; set; }
     }
 }
