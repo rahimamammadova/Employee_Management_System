@@ -21,6 +21,6 @@ namespace EMS_DAL.Dtos
         public PermissionType PermissionType { get; set; }
         public List<EnumValueDto> PermissionTypeEnumValues { get; set; }
         public string Description { get; set; }
-        public Guid SystemAppRoleId { get; set; }
+        public Guid? SystemAppRoleId { get; set; }
     }
 }

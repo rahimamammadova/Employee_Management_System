@@ -14,6 +14,6 @@ namespace EMS_DAL.Dtos
         public string Description { get; set; }
         public Guid PermissionId { get; set; }
         public PermissionDto PermissionDto { get; set; }
-        public Guid SystemAppId { get; set; }
+        public Guid? SystemAppId { get; set; }
     }
 }

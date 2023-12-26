@@ -11,7 +11,7 @@ namespace EMS_DAL.Models
         public string Title { get; set; }
         public string Description { get; set; }
 
-        public Guid SystemAppId { get; set; }
+        public Guid? SystemAppId { get; set; }
         public SystemApp SystemApp { get; set; }
         public ICollection<Permission> Permissions { get; set; } = new List<Permission>();
 
