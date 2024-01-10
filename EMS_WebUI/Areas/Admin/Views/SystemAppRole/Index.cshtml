@@ -34,7 +34,6 @@
                                 <th class="text-center">ID</th>
                                 <th class="text-center">Title</th>
                                 <th class="text-center">Description</th>
-                                <th class="text-center">Permission</th>
                                 <th class="text-center">Action</th>
                             </tr>
                         </thead>
@@ -47,10 +46,10 @@
                                         <td class="text-center">@item.Id</td>
                                         <td class="text-center">@item.Title</td>
                                         <td class="text-center">@item.Description</td>
-                                        <td class="text-center">@item.PermissionDto.Title</td>
                                         <td class="text-center" role="group">
                                             <a asp-area="Admin" asp-controller="SystemAppRole" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger" aria-current="page">  <i class="bi bi-trash-fill"></i>Delete</a>
                                             <a asp-area="Admin" asp-controller="SystemAppRole" asp-action="Update" asp-route-id="@item.Id" class="btn btn-primary" aria-current="page"> <i class="bi bi-pencil-square"></i>Modify</a>
+                                            <a asp-area="Admin" asp-controller="SystemAppRole" asp-action="AddPermission" asp-route-id="@item.Id" class="btn btn-primary" aria-current="page"> <i class="bi bi-pencil-square"></i>Add permission</a>
                                         </td>
                                     </tr>
                                 }

@@ -11,16 +11,7 @@ namespace EMS_DAL.Dtos
 {
     public class PermissionDto : BaseDto
     {
-        public PermissionDto()
-        {
-            this.PermissionTypeEnumValues = EnumHelper<PermissionType>.GetEnumValues();
-        }
         public string Title { get; set; }
-        [Display(Name ="Permission Type")]
-        public int PermissionTypeId { get; set; }
-        public PermissionType PermissionType { get; set; }
-        public List<EnumValueDto> PermissionTypeEnumValues { get; set; }
         public string Description { get; set; }
-        public Guid? SystemAppRoleId { get; set; }
     }
 }

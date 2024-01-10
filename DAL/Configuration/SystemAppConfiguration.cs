@@ -14,12 +14,6 @@ namespace EMS_DAL.Configuration
         public void Configure(EntityTypeBuilder<SystemApp> builder)
         {
             builder.Property(t=>t.Title).IsRequired().HasMaxLength(50);
-            builder.HasMany(r => r.SystemAppRoles)
-                .WithOne(s => s.SystemApp)
-                .HasForeignKey(i => i.SystemAppId);
-            builder.HasMany(e=>e.EmployeeSystemApps)
-                .WithOne(s=>s.SystemApp)
-                .HasForeignKey(s=>s.SystemAppId);
         }
     }
 }

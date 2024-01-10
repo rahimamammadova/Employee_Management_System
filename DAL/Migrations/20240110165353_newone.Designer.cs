@@ -4,6 +4,7 @@ using EMS_DAL.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EMS_DAL.Migrations
 {
     [DbContext(typeof(AppDbIdentityContext))]
-    partial class AppDbIdentityContextModelSnapshot : ModelSnapshot
+    [Migration("20240110165353_newone")]
+    partial class newone
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -265,6 +268,9 @@ namespace EMS_DAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid?>("SystemAppRoleId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -274,6 +280,8 @@ namespace EMS_DAL.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("SystemAppRoleId");
 
                     b.ToTable("Permissions");
                 });
@@ -321,6 +329,7 @@ namespace EMS_DAL.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid?>("SystemAppId")
+                        .IsRequired()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Title")
@@ -485,11 +494,22 @@ namespace EMS_DAL.Migrations
                     b.Navigation("Department");
                 });
 
+            modelBuilder.Entity("EMS_DAL.Models.Permission", b =>
+                {
+                    b.HasOne("EMS_DAL.Models.SystemAppRole", null)
+                        .WithMany("Permissions")
+                        .HasForeignKey("SystemAppRoleId");
+                });
+
             modelBuilder.Entity("EMS_DAL.Models.SystemAppRole", b =>
                 {
-                    b.HasOne("EMS_DAL.Models.SystemApp", null)
+                    b.HasOne("EMS_DAL.Models.SystemApp", "SystemApp")
                         .WithMany("SystemAppRoles")
-                        .HasForeignKey("SystemAppId");
+                        .HasForeignKey("SystemAppId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("SystemApp");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -560,6 +580,11 @@ namespace EMS_DAL.Migrations
                     b.Navigation("EmployeeSystemApps");
 
                     b.Navigation("SystemAppRoles");
+                });
+
+            modelBuilder.Entity("EMS_DAL.Models.SystemAppRole", b =>
+                {
+                    b.Navigation("Permissions");
                 });
 #pragma warning restore 612, 618
         }

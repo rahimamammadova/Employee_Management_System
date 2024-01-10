@@ -3,6 +3,7 @@ using EMS_DAL.Dtos;
 using EMS_DAL.Enums;
 using EMS_DAL.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Data;
 
 namespace EMS_WebUI.Areas.Admin.Controllers
 {
@@ -10,10 +11,10 @@ namespace EMS_WebUI.Areas.Admin.Controllers
     public class SystemAppController : Controller
     {
         private readonly IGenericService<SystemAppDto, SystemApp> _service;
-        private readonly IGenericService<SystemAppRoleDto, SystemAppRole> _roleService;
+        private readonly ISystemAppRoleService _roleService;
 
 
-        public SystemAppController(IGenericService<SystemAppDto, SystemApp> service, IGenericService<SystemAppRoleDto, SystemAppRole> roleService)
+        public SystemAppController(IGenericService<SystemAppDto, SystemApp> service, ISystemAppRoleService roleService)
         {
             _service = service;
             _roleService = roleService;
@@ -24,12 +25,17 @@ namespace EMS_WebUI.Areas.Admin.Controllers
 
             foreach (var item in systemList)
             {
-                var role = await _roleService.GetByIdAsync(item.SystemAppRoleId);
-                item.SystemAppRoleDto = new SystemAppRoleDto()
+                var roles = await _roleService.GetSystemAppRoleBySystemIdAsync(item.Id);
+                foreach (var roleItem in roles)
                 {
-                    Id = role.Id,
-                    Title = role.Title
-                };
+                    item.SystemAppRoleDto = new SystemAppRoleDto()
+                    {
+                        Id = roleItem.Id,
+                        Title = roleItem.Title
+                    };
+                }
+              
+              
             }
 
             return View(systemList);

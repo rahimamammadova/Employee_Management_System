@@ -40,7 +40,7 @@ builder.Services.AddIdentity<AppUser, AppRole>(opts =>
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 //builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
 builder.Services.AddScoped(typeof(IGenericService<,>), typeof(GenericService<,>));
-
+builder.Services.AddScoped<ISystemAppRoleService, SystemAppRoleService>();
 builder.Services.AddAutoMapper(typeof(CustomMapping));
 
 builder.Services.AddFluentValidationAutoValidation();

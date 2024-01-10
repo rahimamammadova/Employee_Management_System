@@ -32,7 +32,6 @@ namespace EMS_WebUI.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(PermissionDto itemDto)
         {
-            itemDto.PermissionType = (PermissionType)Enum.ToObject(typeof(PermissionType), itemDto.PermissionTypeId);
             var permission = await _service.AddAsync(itemDto);
             if (permission != null)
             {
@@ -46,7 +45,6 @@ namespace EMS_WebUI.Areas.Admin.Controllers
         public async Task<IActionResult> Update(Guid id)
         {
             var model = await _service.GetByIdAsync(id);
-            model.PermissionTypeId = (int)model.PermissionType;
             return View(model);
 
         }
@@ -54,7 +52,6 @@ namespace EMS_WebUI.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult Update(PermissionDto itemDto)
         {
-            itemDto.PermissionType = (PermissionType)Enum.ToObject(typeof(PermissionType), itemDto.PermissionTypeId);
             var model = _service.Update(itemDto);
 
             if (model != null)
@@ -69,7 +66,6 @@ namespace EMS_WebUI.Areas.Admin.Controllers
         public async Task<IActionResult> Delete(Guid id)
         {
             var model = await _service.GetByIdAsync(id);
-            model.PermissionTypeId = (int)model.PermissionType;
             return View(model);
 
         }

@@ -21,17 +21,6 @@ namespace EMS_WebUI.Areas.Admin.Controllers
         public async Task<ActionResult> Index()
         {
             var roleList = await _service.GetListAsync();
-
-            foreach (var item in roleList)
-            {
-                var permission = await _permissionService.GetByIdAsync(item.PermissionId);
-                item.PermissionDto = new PermissionDto()
-                {
-                    Id = permission.Id,
-                    Title = permission.Title
-                };
-            }
-
             return View(roleList);
         }
 
@@ -95,7 +84,6 @@ namespace EMS_WebUI.Areas.Admin.Controllers
 
 
         }
-
 
     }
 }
