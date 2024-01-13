@@ -1,5 +1,4 @@
-﻿using EMS_DAL.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -8,13 +7,12 @@ using System.Threading.Tasks;
 
 namespace EMS_DAL.Dtos
 {
-    public class EmployeeSystemAppDto:BaseDto
+    public class SystemRoleDto:BaseDto
     {
-        public Guid EmployeeId { get; set; }
-        [Display(Name = "Employee name")]
-        public string EmployeeName { get; set; }
-        [Display(Name = "System title")]
         public Guid SystemAppId { get; set; }
+        [Display (Name ="System title")]
         public string SystemAppTitle { get; set; }
+        public Guid RoleId { get; set; }
+        public string RoleTitle { get; set; }
     }
 }

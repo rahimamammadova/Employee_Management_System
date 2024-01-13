@@ -24,10 +24,11 @@ namespace EMS_DAL.Data
         }
         public DbSet<Department> Departments { get; set; }
         public DbSet<Employee> Employees { get; set; }
-        public DbSet<EmployeeDocument> EmployeeDocuments { get; set; }
         public DbSet<EmployeeSystemApp> EmployeeSystemApps { get; set; }
         public DbSet<Permission> Permissions { get; set; }
         public DbSet<SystemApp> SystemApps { get; set; }
         public DbSet<SystemAppRole> SystemAppRoles { get; set; }
+        public DbSet<SystemAppRolePermission> SystemAppRolePermissions { get; set; }
+        public DbSet<SystemRole> SystemRoles { get; set; }
     }
 }

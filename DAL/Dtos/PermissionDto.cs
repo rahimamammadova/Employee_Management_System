@@ -13,5 +13,6 @@ namespace EMS_DAL.Dtos
     {
         public string Title { get; set; }
         public string Description { get; set; }
+        public Guid RoleId { get; set; }
     }
 }

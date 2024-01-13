@@ -92,10 +92,10 @@
 
                 <div class="col-4">
                     <div class="form-group">
-                        <label asp-for="ProfilePicture" class="control-label"></label>
-                        <input asp-for="ProfilePicture" class="form-control" />
-                        <span asp-validation-for="ProfilePicture" class="text-danger"></span>
-                    </div>
+                            <label asp-for="@Model.ProfilePicture" class="control-label"></label>
+                            <input type="file" name="file" class="form-control"  />
+                            <span asp-validation-for="@Model.ProfilePicture" class="text-danger"></span>
+                        </div>
                 </div>
 
 

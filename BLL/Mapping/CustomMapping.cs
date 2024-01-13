@@ -16,11 +16,12 @@ namespace EMS_BLL.Mapping
         {
             CreateMap<Department, DepartmentDto>().ReverseMap();
             CreateMap<Employee, EmployeeDto>().ReverseMap();
-            CreateMap<EmployeeDocument, EmployeeDocumentDto>().ReverseMap();
             CreateMap<EmployeeSystemApp, EmployeeSystemAppDto>().ReverseMap();
             CreateMap<SystemApp,SystemAppDto>().ReverseMap();
             CreateMap<SystemAppRole,SystemAppRoleDto>().ReverseMap();
             CreateMap<Permission,PermissionDto>().ReverseMap();
+            CreateMap<SystemAppRolePermission, SystemAppRolePermissionDto>().ReverseMap();
+            CreateMap<SystemRole, SystemRoleDto>().ReverseMap();
 
         }
     }

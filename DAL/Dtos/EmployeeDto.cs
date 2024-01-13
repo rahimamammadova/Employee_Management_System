@@ -31,8 +31,12 @@ namespace EMS_DAL.Dtos
         public GenderType GenderType { get; set; }
 
         [Display(Name = "Hire date")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime HireDate { get; set; }
         [Display(Name = "Birth date")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime BirthDate { get; set; }
         public Decimal Salary { get; set; }
 
@@ -44,6 +48,7 @@ namespace EMS_DAL.Dtos
         public List<EnumValueDto> PositionTypeEnumValues { get; set; }
 
         public string? UserId { get; set; }
+        [Display(Name = "Department")]
         public Guid DepartmentId { get; set; }
         public DepartmentDto DepartmentDto { get; set; }
 

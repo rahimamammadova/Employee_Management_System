@@ -10,8 +10,6 @@ namespace EMS_DAL.DBModels
     public class EmployeeSystemApp:BaseEntity
     {
         public Guid EmployeeId { get; set; }
-        public Employee Employee { get; set; }
         public Guid SystemAppId { get; set; }
-        public SystemApp SystemApp { get; set; }
     }
 }

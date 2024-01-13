@@ -7,10 +7,11 @@ using System.Threading.Tasks;
 
 namespace EMS_DAL.DBModels
 {
-    public class EmployeeDocument:BaseEntity
+    public class SystemAppRolePermission: BaseEntity
     {
-        public Guid EmployeeId { get; set; }
-        public Employee Employee { get; set; }
-        public string Url { get; set; }
+        public Guid RoleId { get; set; }
+        public Guid PermissionId { get; set; }
+
     }
 }
+

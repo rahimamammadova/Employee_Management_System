@@ -5,11 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EMS_DAL.Dtos
+namespace EMS_DAL.DBModels
 {
-    public class EmployeeDocumentDto : BaseDto
+    public class SystemRole:BaseEntity
     {
-        public Guid EmployeeId { get; set; }
-        public string Url { get; set; }
+        public Guid SystemAppId { get; set; }
+        public Guid RoleId { get; set;}
     }
 }

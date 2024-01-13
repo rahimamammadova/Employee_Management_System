@@ -21,6 +21,7 @@ namespace EMS_DAL.Dtos
         public int SystemTypeId { get; set; }
         public SystemType SystemType { get; set; }
         public List<EnumValueDto> SystemTypeEnumValues { get; set; }
+        [Display (Name="System role type")]
         public Guid SystemAppRoleId { get; set; }
         public SystemAppRoleDto SystemAppRoleDto { get; set; }
     }

@@ -1,4 +1,5 @@
 ﻿using EMS_BLL.Services.Interfaces;
+using EMS_DAL.DBModels;
 using EMS_DAL.Dtos;
 using EMS_DAL.Enums;
 using EMS_DAL.Models;
@@ -12,12 +13,15 @@ namespace EMS_WebUI.Areas.Admin.Controllers
     {
         private readonly IGenericService<SystemAppDto, SystemApp> _service;
         private readonly ISystemAppRoleService _roleService;
+        private readonly IGenericService<SystemRoleDto, SystemRole> _roleSystemService;
 
 
-        public SystemAppController(IGenericService<SystemAppDto, SystemApp> service, ISystemAppRoleService roleService)
+        public SystemAppController(IGenericService<SystemAppDto, SystemApp> service, ISystemAppRoleService roleService,
+            IGenericService<SystemRoleDto, SystemRole> roleSystemService)
         {
             _service = service;
             _roleService = roleService;
+            _roleSystemService = roleSystemService;
         }
         public async Task<ActionResult> Index()
         {
@@ -87,6 +91,63 @@ namespace EMS_WebUI.Areas.Admin.Controllers
             return View(model);
 
         }
+
+
+        public async Task<IActionResult> ShowRole(Guid id)
+        {
+            List<SystemRoleDto> roleSystemDtoList = new List<SystemRoleDto>();
+            var roleSystems = await _roleSystemService.GetListAsync();
+            var roleSystemList = roleSystems.Where(x => x.SystemAppId == id).ToList();
+
+            TempData["SystemAppId"] = id;
+            foreach (var roleSystem in roleSystemList)
+            {
+                var role = await _roleService.GetByIdAsync(roleSystem.RoleId);
+                roleSystem.RoleTitle = role.Title;
+                roleSystemDtoList.Add(roleSystem);
+            }
+            return View(roleSystemDtoList);
+
+        }
+
+
+        public async Task<IActionResult> AssignRole()
+        {
+            Guid systemId = Guid.Empty;
+            if (TempData.ContainsKey("SystemAppId"))
+            {
+                systemId = Guid.Parse(TempData["SystemAppId"].ToString());
+            }
+
+            SystemRoleDto model = new SystemRoleDto();
+
+            var system = await _service.GetByIdAsync(systemId);
+            model.SystemAppTitle = system.Title;
+            model.SystemAppId = system.Id;
+
+            ViewBag.RoleDtos = await _roleService.GetListAsync();
+
+            return View(model);
+
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> AssignRole(SystemRoleDto itemDto)
+        {
+            var model = _roleSystemService.AddAsync(itemDto);
+
+            if (model != null)
+            {
+                TempData["success"] = "System role has been successfully updated.";
+                return RedirectToAction("Index");
+            }
+            return View(model);
+
+        }
+
+
+
 
         public async Task<IActionResult> Delete(Guid id)
         {

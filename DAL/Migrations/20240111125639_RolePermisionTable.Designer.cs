@@ -4,6 +4,7 @@ using EMS_DAL.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EMS_DAL.Migrations
 {
     [DbContext(typeof(AppDbIdentityContext))]
-    partial class AppDbIdentityContextModelSnapshot : ModelSnapshot
+    [Migration("20240111125639_RolePermisionTable")]
+    partial class RolePermisionTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,6 +24,32 @@ namespace EMS_DAL.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("EMS_DAL.DBModels.EmployeeDocument", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("EmployeeId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Url")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EmployeeId");
+
+                    b.ToTable("EmployeeDocuments");
+                });
 
             modelBuilder.Entity("EMS_DAL.DBModels.EmployeeSystemApp", b =>
                 {
@@ -70,29 +99,6 @@ namespace EMS_DAL.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("SystemAppRolePermissions");
-                });
-
-            modelBuilder.Entity("EMS_DAL.DBModels.SystemRole", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid>("RoleId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("SystemAppId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("UpdatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("SystemRoles");
                 });
 
             modelBuilder.Entity("EMS_DAL.Models.AppRole", b =>
@@ -358,21 +364,6 @@ namespace EMS_DAL.Migrations
                     b.ToTable("SystemAppRoles");
                 });
 
-            modelBuilder.Entity("EmployeeSystemApp", b =>
-                {
-                    b.Property<Guid>("EmployeesId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("SystemAppsId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("EmployeesId", "SystemAppsId");
-
-                    b.HasIndex("SystemAppsId");
-
-                    b.ToTable("EmployeeSystemApp");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.Property<int>("Id")
@@ -479,19 +470,34 @@ namespace EMS_DAL.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("EMS_DAL.DBModels.EmployeeDocument", b =>
+                {
+                    b.HasOne("EMS_DAL.Models.Employee", "Employee")
+                        .WithMany("EmployeeDocuments")
+                        .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Employee");
+                });
+
             modelBuilder.Entity("EMS_DAL.DBModels.EmployeeSystemApp", b =>
                 {
-                    b.HasOne("EMS_DAL.Models.Employee", null)
+                    b.HasOne("EMS_DAL.Models.Employee", "Employee")
                         .WithMany("EmployeeSystemApps")
                         .HasForeignKey("EmployeeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("EMS_DAL.Models.SystemApp", null)
+                    b.HasOne("EMS_DAL.Models.SystemApp", "SystemApp")
                         .WithMany("EmployeeSystemApps")
                         .HasForeignKey("SystemAppId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Employee");
+
+                    b.Navigation("SystemApp");
                 });
 
             modelBuilder.Entity("EMS_DAL.Models.Employee", b =>
@@ -510,21 +516,6 @@ namespace EMS_DAL.Migrations
                     b.HasOne("EMS_DAL.Models.SystemApp", null)
                         .WithMany("SystemAppRoles")
                         .HasForeignKey("SystemAppId");
-                });
-
-            modelBuilder.Entity("EmployeeSystemApp", b =>
-                {
-                    b.HasOne("EMS_DAL.Models.Employee", null)
-                        .WithMany()
-                        .HasForeignKey("EmployeesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("EMS_DAL.Models.SystemApp", null)
-                        .WithMany()
-                        .HasForeignKey("SystemAppsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -585,6 +576,8 @@ namespace EMS_DAL.Migrations
 
             modelBuilder.Entity("EMS_DAL.Models.Employee", b =>
                 {
+                    b.Navigation("EmployeeDocuments");
+
                     b.Navigation("EmployeeSystemApps");
                 });
 

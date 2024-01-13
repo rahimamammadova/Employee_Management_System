@@ -1,0 +1,64 @@
+﻿@model SystemRoleDto
+@{
+    ViewData["Title"] = "AssignRole";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+
+
+<div class="layout-px-spacing">
+
+    <div class="row layout-top-spacing">
+
+        <form asp-action="AssignRole" enctype="multipart/form-data" class="mt-3 my-5">
+
+            <div class="row">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="col-4">
+                    <div class="form-group">
+                        <label asp-for="SystemAppTitle" class="control-label"></label>
+                        <input asp-for="SystemAppTitle" class="form-control" />
+                         <input asp-for="SystemAppId" hidden class="form-control" />
+                        <span asp-validation-for="SystemAppTitle" class="text-danger"></span>
+                    </div>
+                </div>
+          
+                  <div class="col-4">
+                    <div class="form-group">
+                        <label asp-for="RoleId" class="control-label"></label>
+
+                        <select asp-for="RoleId"
+                                class="form-control"
+                                asp-items="@(new SelectList( ViewBag.RoleDtos, nameof(SystemAppRoleDto.Id), nameof(SystemAppRoleDto.Title)))">
+                            <option>Please select one</option>
+                        </select>
+
+                        <span asp-validation-for="RoleId" class="text-danger"></span>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row mt-3">
+
+                <div class="col-md-4 text-start">
+                    @Html.ActionLink("Return to the list", "Index", "SystemAppRole", null, new { @class = "btn btn-primary btn-lg btn-block" })
+
+                </div>
+                <div class="col-md-4"></div>
+                <div class="col-md-4 text-end">
+                    <input id="frmProductCat" type="submit" value="Create" class="btn btn-primary btn-lg btn-block" tabindex="16" />
+
+                </div>
+
+            </div>
+
+        </form>
+
+    </div>
+</div>
+
+
+
+

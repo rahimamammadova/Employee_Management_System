@@ -31,6 +31,7 @@
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
+                                    <th class="text-center">Profile picture</th>
                                     <th class="text-center">ID</th>
                                     <th class="text-center">Name</th>
                                     <th class="text-center">Surname</th>
@@ -39,7 +40,7 @@
                                     <th class="text-center">Department</th>
                                     <th class="text-center">Position type</th>
                                     <th class="text-center">Hire date</th>
-                                    <th class="text-center">Profile picture</th>
+                                    
                                     <th class="text-center">Action</th>
                                 </tr>
                             </thead>
@@ -49,6 +50,7 @@
                                     foreach (var item in Model)
                                     {
                                         <tr>
+                                        <td class="text-center">  <img style="width:100px; height: 100px" src="~/@item.ProfilePicture" /></td>
                                             <td class="text-center">@item.Id</td>
                                             <td class="text-center">@item.Firstname</td>
                                             <td class="text-center">@item.Lastname</td>
@@ -57,10 +59,11 @@
                                             <td class="text-center">@item.DepartmentDto.Title</td>
                                             <td class="text-center">@item.PositionType.ToString()</td>
                                             <td class="text-center">@item.HireDate</td>
-                                            <td class="text-center">@item.ProfilePicture</td>
+                                            
                                             <td class="text-center" role="group">
                                                 <a asp-area="Admin"  asp-controller="Employee"  asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger" aria-current="page">  <i class="bi bi-trash-fill"></i>Delete</a>
                                                 <a asp-area="Admin"  asp-controller="Employee" asp-action="Update" asp-route-id="@item.Id" class="btn btn-primary" aria-current="page"> <i class="bi bi-pencil-square"></i>Modify</a>
+                                                <a asp-area="Admin"  asp-controller="Employee" asp-action="ShowSystemInfo" asp-route-id="@item.Id" class="btn btn-primary mt-1" aria-current="page"> <i class="bi bi-pencil-square"></i>Show system info</a>
                                             </td>
                                         </tr>
                                     }

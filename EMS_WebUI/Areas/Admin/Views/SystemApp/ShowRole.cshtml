@@ -1,9 +1,8 @@
-﻿@model List<SystemAppDto>
+﻿@model  List<SystemRoleDto> 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "ShowRole";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
-
 
 
 <div class="row mt-3 mx-3">
@@ -15,12 +14,12 @@
 
                     <div class="col-6">
                         <h2 class="text-primary">
-                            System List
+                            Roles of the system
                         </h2>
                     </div>
                     <div class="col-6 text-end">
-                        <a asp-area="Admin" asp-controller="SystemApp" asp-action="Create" class="btn btn-primary">
-                            <i class="bi bi-plus-circle"></i>&nbsp; Create a new system
+                        <a asp-area="Admin" asp-controller="SystemApp" asp-action="AssignRole" class="btn btn-primary">
+                            <i class="bi bi-plus-circle"></i>&nbsp; Assign a new role for the system
                         </a>
                     </div>
 
@@ -33,8 +32,7 @@
                             <tr>
                                 <th class="text-center">ID</th>
                                 <th class="text-center">Title</th>
-                                <th class="text-center">Description</th>
-                                <th class="text-center">System type</th>
+                                <th class="text-center">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -44,18 +42,13 @@
                                 {
                                     <tr>
                                         <td class="text-center">@item.Id</td>
-                                        <td class="text-center">@item.Title</td>
-                                        <td class="text-center">@item.Description</td>
-                                        <td class="text-center">@item.SystemType.ToString()</td>
+                                        <td class="text-center">@item.RoleTitle</td>
                                         <td class="text-center" role="group">
-                                            <a asp-area="Admin" asp-controller="SystemApp" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger" aria-current="page">  <i class="bi bi-trash-fill"></i>Delete</a>
-                                            <a asp-area="Admin" asp-controller="SystemApp" asp-action="Update" asp-route-id="@item.Id" class="btn btn-primary" aria-current="page"> <i class="bi bi-pencil-square"></i>Modify</a>
-                                            <a asp-area="Admin" asp-controller="SystemApp" asp-action="ShowRole" asp-route-id="@item.Id" class="btn btn-primary" aria-current="page"> <i class="bi bi-pencil-square"></i>Show Roles</a>
+                                            <a asp-area="Admin" asp-controller="SystemApp" asp-action="DeleteRole" asp-route-id="@item.Id" class="btn btn-danger" aria-current="page">  <i class="bi bi-trash-fill"></i>Delete</a>
+                                            <a asp-area="Admin" asp-controller="SystemApp" asp-action="UpdateRole" asp-route-id="@item.Id" class="btn btn-primary" aria-current="page"> <i class="bi bi-pencil-square"></i>Modify</a>
                                         </td>
                                     </tr>
                                 }
-
-
                             }
 
 
@@ -69,4 +62,3 @@
     </div>
 
 </div>
-

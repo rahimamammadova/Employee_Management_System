@@ -4,6 +4,7 @@ using EMS_DAL.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EMS_DAL.Migrations
 {
     [DbContext(typeof(AppDbIdentityContext))]
-    partial class AppDbIdentityContextModelSnapshot : ModelSnapshot
+    [Migration("20240112182440_systemapp")]
+    partial class systemapp
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -70,29 +73,6 @@ namespace EMS_DAL.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("SystemAppRolePermissions");
-                });
-
-            modelBuilder.Entity("EMS_DAL.DBModels.SystemRole", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid>("RoleId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("SystemAppId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("UpdatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("SystemRoles");
                 });
 
             modelBuilder.Entity("EMS_DAL.Models.AppRole", b =>

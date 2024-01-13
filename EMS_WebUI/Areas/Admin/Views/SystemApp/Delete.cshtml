@@ -47,20 +47,6 @@
                 </div>
 
 
-                <div class="w-100"></div>
-                <div class="col-4">
-                    <div class="form-group">
-                        <label asp-for="SystemAppRoleId" class="control-label"></label>
-
-                        <select asp-for="SystemAppRoleId"
-                                class="form-control"
-                                asp-items="@(new SelectList(ViewBag.SystemAppRoleDtos, nameof(SystemAppRoleDto.Id), nameof(SystemAppRoleDto.Title)))">
-                            <option>Please select one</option>
-                        </select>
-
-                        <span asp-validation-for="SystemAppRoleId" class="text-danger"></span>
-                    </div>
-                </div>
 
 
             </div>

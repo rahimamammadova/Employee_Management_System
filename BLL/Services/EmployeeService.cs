@@ -17,18 +17,15 @@ namespace EMS_BLL.Services
     {
         private readonly IEmployeeRepository _employeeRepository;
         private readonly IGenericRepository<Department> _departmentRepository;
-        private readonly IGenericRepository<EmployeeDocument> _documentReposiroty;
 
         public EmployeeService(IGenericRepository<Employee> genericRepository,
             IMapper mapper, ILogger<GenericService<EmployeeDto, Employee>> logger,
             IGenericRepository<Department> departmentRepository,
-            IEmployeeRepository employeeReposiroty,
-            IGenericRepository<EmployeeDocument> documentRepository)
+            IEmployeeRepository employeeReposiroty)
             : base(genericRepository, mapper, logger)
         {
             _departmentRepository = departmentRepository;
             _employeeRepository = employeeReposiroty;
-            _documentReposiroty = documentRepository;
         }
 
         //public async Task<List<EmployeeDto>> GetEmployeeDtosAsync()
@@ -57,8 +54,6 @@ namespace EMS_BLL.Services
         public async Task<EmployeeDto> GetEmployeeDetailByIdAsync(Guid id)
         {
             var employee = await _employeeRepository.GetByIdAsync(id);
-            List<EmployeeDocument> documents = await _documentReposiroty.GetListAsync();
-            employee.EmployeeDocuments = documents.Where(d => d.EmployeeId == id).ToList();
             var employeeDto = _mapper.Map<EmployeeDto>(employee);
             return employeeDto;
         }
